@@ -1,14 +1,11 @@
 import React from "react";
-// import cls from "./sidebar.module.css";
 
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-// import Group from "./group";
-// import UserList from "./userlist";
-import { Grid } from "@mui/material";
+
 import Chat from "../Chat";
 import Chatsidebar from "../chatSidebar";
 
@@ -19,6 +16,12 @@ export default function MobileMenu() {
     setValue(newValue);
   };
 
+  const styleobj = {
+    height: "100%",
+    width: "100%",
+    padding: 0,
+    margin: 0,
+  };
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
@@ -28,19 +31,13 @@ export default function MobileMenu() {
             <Tab label="Chat" value="2" />
           </TabList>
         </Box>
-        <TabPanel value="1">
+        <TabPanel value="1" sx={styleobj}>
           <Chatsidebar></Chatsidebar>
         </TabPanel>
-        <TabPanel value="2" sx={{ width: "100vw" }}>
+        <TabPanel value="2" sx={styleobj}>
           <Chat></Chat>
         </TabPanel>
       </TabContext>
     </Box>
   );
-}
-
-{
-  /* <Grid container sx={{ height: "100%" }}>
-  
-</Grid> */
 }
