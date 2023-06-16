@@ -8,6 +8,7 @@ import TabPanel from "@mui/lab/TabPanel";
 
 import Chat from "../Chat";
 import Chatsidebar from "../chatSidebar";
+import CreateGroup from "../CreateGroup/CreateGroup";
 
 export default function MobileMenu() {
   const [value, setValue] = React.useState("1");
@@ -29,6 +30,7 @@ export default function MobileMenu() {
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Profile" value="1" />
             <Tab label="Chat" value="2" />
+            <Tab label="Create Group" value="3" />
           </TabList>
         </Box>
         <TabPanel value="1" sx={styleobj}>
@@ -36,6 +38,9 @@ export default function MobileMenu() {
         </TabPanel>
         <TabPanel value="2" sx={styleobj}>
           <Chat></Chat>
+        </TabPanel>
+        <TabPanel value="3" sx={styleobj}>
+          <CreateGroup></CreateGroup>
         </TabPanel>
       </TabContext>
     </Box>

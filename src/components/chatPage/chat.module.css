@@ -28,26 +28,30 @@
   height: 400px;
   overflow-y: auto;
   min-height: 445px;
-  background-color: rgb(186, 231, 227);
+  /* background-color: rgb(186, 231, 227); */
   scrollbar-color: transparent transparent;
 }
 
 .Chat_buttom_box {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  background-color: rgb(228, 248, 246);
+  justify-content: flex-start;
+  /* background-color: rgb(17, 129, 118); */
   padding: 10px;
   width: 97%;
+  border-top: 1px solid black;
 }
 
 .Chat_buttom_box input[type="text"] {
   flex-grow: 1;
   padding: 8px;
   border-radius: 5px;
-  background-color: #bbd8d8;
+  background-color: #d7e4e4;
   border: none;
   border-style: none;
+  display: inline-block;
+  max-width: 400px;
+  /* width: 30vw !important; */
 }
 
 .Chat_buttom_box input[type="file"] {
