@@ -66,7 +66,12 @@ const SignupPage = () => {
                   <span style={{ color: "orange", fontSize: 20 }}>Log In</span>
                 </p>
               ) : (
-                <span style={{ color: "black", fontSize: 20 }}>Sign Up</span>
+                <p>
+                  Don't have an account?
+                  <span style={{ color: "orange", fontSize: 20 }}>
+                    Sign up now!
+                  </span>
+                </p>
               )}
             </div>
           </form>

@@ -1,0 +1,9 @@
+.sidebar_main_container {
+  /* margin: 0%;
+  padding: 0%; */
+  /* background-color: lightcoral; */
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
