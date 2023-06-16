@@ -4,7 +4,7 @@ const Search = () => {
   return (
     <div className={cls.Search_bar_containter}>
       <input type="text" placeholder="enter user mailid"></input>
-      <button>search</button>
+      <button>add</button>
     </div>
   );
 };

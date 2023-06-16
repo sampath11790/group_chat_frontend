@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Message from "./Message/message";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -20,7 +21,7 @@ const Chat = () => {
       <ChatNav></ChatNav>
       <div className={cls.Chat_msg}>
         {[...Array(30)].map((item, index) => (
-          <p>`message one ${index}`</p>
+          <Message key={index} text={index}></Message>
         ))}
       </div>
       <div className={cls.Chat_buttom_box}>
