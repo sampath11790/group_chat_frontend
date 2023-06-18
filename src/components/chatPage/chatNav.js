@@ -1,5 +1,6 @@
 import React from "react";
 import cls from "./chat.module.css";
+import Logout from "./Logout/Logout";
 const ChatNav = () => {
   return (
     <div className={cls.chatNav}>
@@ -8,6 +9,7 @@ const ChatNav = () => {
         <p>icon 1</p>
         <p>icon 2</p>
         <p>icon 2</p>
+        <Logout></Logout>
       </div>
     </div>
   );

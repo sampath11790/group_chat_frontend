@@ -23,7 +23,7 @@ function App() {
       navigate("/chatmain");
       return;
     } else {
-      navigate("/signup");
+      navigate("/login");
     }
   }, [login]);
 
@@ -33,7 +33,7 @@ function App() {
       {/* <ChatMain></ChatMain> */}
       {/* <CreateGroup></CreateGroup> */}
       <Routes>
-        <Route path="signup" element={<SignupPage />} />
+        <Route path="login" element={<SignupPage />} />
         <Route path="chatmain" element={<ChatMain />} />
         <Route path="creategroup" element={<CreateGroup />} />
       </Routes>
