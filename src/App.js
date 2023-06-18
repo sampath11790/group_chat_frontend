@@ -23,7 +23,7 @@ function App() {
       navigate("/chatmain");
       return;
     } else {
-      navigate("/login");
+      navigate("/signup");
     }
   }, [login]);
 

@@ -1,4 +1,4 @@
-import { CartSliceAction } from "./cartslice";
+import GroupSlice, { groupSliceAction } from "./groupslice";
 //urls
 const getGroupsUrl = "localhost:3001/group/user";
 const createGroupUrl = "localhost:3001/group/create";
@@ -73,6 +73,7 @@ export const GetgroupList = (token) => {
   return async (Dispatch) => {
     try {
       const data = await getactionFun(getGroupsUrl, token);
+      //  Dispatch(groupSliceAction.setGroupList(data))
     } catch (error) {
       console.log(error);
     }
@@ -83,6 +84,7 @@ export const GetAllMembers = (token) => {
   return async (Dispatch) => {
     try {
       const data = await getactionFun(GetAllMembersUrl, token);
+      // Dispatch(groupSliceAction.setGroupMember(data))
     } catch (error) {
       console.log(error);
     }

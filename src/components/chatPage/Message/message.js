@@ -12,12 +12,12 @@ const Message = (props) => {
   };
   return (
     <li
-      key={props.text}
-      className={props.text % 2 == 0 ? cls.chatMessage : cls.rightChat}
+      key={props.id}
+      className={props.id % 2 == 0 ? cls.chatMessage : cls.rightChat}
     >
       <span className={cls.time}>{time()}</span>
       <span className={cls.message}>
-        <span className={cls.messageContent}>message {props.text}</span>
+        <span className={cls.messageContent}>message {props.message}</span>
       </span>
     </li>
   );

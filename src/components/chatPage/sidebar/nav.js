@@ -4,12 +4,13 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { IconButton } from "@mui/material";
 const SidebarNav = () => {
+  const name = localStorage.getItem("name");
   return (
     <div className={cls.sidebar_header}>
       <p>Title</p>
       <Stack>
         <IconButton>
-          <span>sampath</span>
+          <span>{name || "user"}</span>
           <Avatar
             sx={{ width: 32, height: 32, objectFit: "cover" }}
             alt=""

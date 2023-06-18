@@ -43,7 +43,8 @@ export const Login = (obj) => {
       const user = await auth(loginUrl, obj, "login");
       alert("login success");
       localStorage.setItem("token", user.Token);
-      localStorage.setItem("Login", true);
+      localStorage.setItem("login", true);
+      localStorage.setItem("name", user.name);
       // Dispatch(AuthSliceAction.login());
       Dispatch(AuthSliceAction.setAuth({ login: "true", token: user.Token }));
     } catch (error) {
