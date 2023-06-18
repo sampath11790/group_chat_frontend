@@ -1,8 +1,39 @@
+import { useDispatch } from "react-redux";
+import { Login, Signup } from "../Store/Auth/Auth-thunk";
 import cls from "./signup.module.css";
 import React, { useState } from "react";
-
+const initialData = {
+  name: "",
+  email: "",
+  password: "",
+  phone: "",
+};
 const SignupPage = () => {
   const [signup, setSignup] = useState(true);
+  const [data, setData] = useState({ ...initialData });
+  const Disptach = useDispatch();
+  const enteredDatahandler = (e) => {
+    e.preventDefault();
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (data.email === "" && data.password === "") {
+      return;
+    }
+    if (!signup) {
+      Disptach(Login({ email: data.email, password: data.password }));
+      return;
+    }
+    if (signup) {
+      Disptach(Signup(data));
+      setData(initialData);
+      // console.log("signup", obj);
+      return;
+    }
+    alert("enter valid data");
+  };
+
   return (
     <>
       <div className={cls.signup_title}>
@@ -19,14 +50,18 @@ const SignupPage = () => {
           ></img>
         </div>
         <div className={cls.form_cont}>
-          <form className={cls.form_elements_cont}>
+          <form className={cls.form_elements_cont} onSubmit={handleSubmit}>
             <div className={cls.signup_header}>
               <h1>{signup ? "Sign Up" : "Log In"}</h1>
             </div>
             {signup && (
               <div className={cls.form_input}>
                 <label htmlFor="name">Name</label>
-                <input type="text" name="name"></input>
+                <input
+                  type="text"
+                  name="name"
+                  onChange={enteredDatahandler}
+                ></input>
               </div>
             )}
             <div className={cls.form_input}>
@@ -34,6 +69,7 @@ const SignupPage = () => {
               <input
                 type="text"
                 name="email"
+                onChange={enteredDatahandler}
                 // placeholder="enter  email address"
               ></input>
             </div>
@@ -43,6 +79,7 @@ const SignupPage = () => {
                 <input
                   type="phone"
                   name="phone"
+                  onChange={enteredDatahandler}
                   //   placeholder="enter phone Number "
                 ></input>
               </div>
@@ -52,6 +89,7 @@ const SignupPage = () => {
               <input
                 type="password"
                 name="password"
+                onChange={enteredDatahandler}
                 // placeholder="enter your password"
               ></input>
             </div>
