@@ -5,8 +5,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(12, 150, 136);
-
+  /* background-color: rgb(12, 150, 136);
+   */
+  background-color: rgb(30, 99, 92);
   color: aliceblue;
 }
 .Search_bar_containter {
