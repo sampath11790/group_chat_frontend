@@ -12,12 +12,13 @@ const Group = () => {
   const Dispatch = useDispatch();
   const navigate = useNavigate();
   // console.log(groupList);
-  const joinButtonHandler = (id, name) => {
+  const joinButtonHandler = (id, name, isAdmin) => {
     navigate("/chatmain");
     Dispatch(getCurrentGroupMessages({ groupid: id }, token));
     Dispatch(groupSliceAction.setCurrentGroupId(id));
     Dispatch(MessageSliceAction.setToggleMenu());
     Dispatch(groupSliceAction.setCurrentGroupName(name));
+    Dispatch(groupSliceAction.setIsAdmin(isAdmin));
   };
   useEffect(() => {
     if (token != null) {
@@ -32,7 +33,11 @@ const Group = () => {
           {console.log(item)}
           <span>{item.name}</span>
 
-          <button onClick={() => joinButtonHandler(item.id, item.name)}>
+          <button
+            onClick={() =>
+              joinButtonHandler(item.id, item.name, item.grouplist.admin)
+            }
+          >
             join
           </button>
         </p>

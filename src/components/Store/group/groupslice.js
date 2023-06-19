@@ -19,6 +19,7 @@ const initialstate = {
     // { id: 3, email: "sample@gmail.com" },
     // { id: 4, email: "sample@gmail.com" },
   ],
+  isAdmin: false,
 };
 
 const GroupSlice = createSlice({
@@ -39,6 +40,13 @@ const GroupSlice = createSlice({
     },
     setCurrentGroupName(state, action) {
       state.currentGroupName = action.payload;
+    },
+    setGroupInitalstate(state, action) {
+      state.currentGroupName = "";
+      state.currentGroupid = null;
+    },
+    setIsAdmin(state, action) {
+      state.isAdmin = action.payload;
     },
   },
 });

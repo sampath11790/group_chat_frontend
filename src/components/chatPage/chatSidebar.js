@@ -3,13 +3,15 @@ import cls from "./chatSidebar.module.css";
 import SidebarNav from "./sidebar/nav";
 import Search from "./sidebar/search";
 import ToggleMenu from "./sidebar/toggleMenu";
+import { useSelector } from "react-redux";
 // import Groups from "./sidebar/toggleMenu";
 
 const Chatsidebar = () => {
+  const { isAdmin } = useSelector((state) => state.group);
   return (
     <div className={cls.sidebar_main_container}>
       <SidebarNav></SidebarNav>
-      <Search></Search>
+      {isAdmin && <Search></Search>}
       <ToggleMenu></ToggleMenu>
     </div>
   );

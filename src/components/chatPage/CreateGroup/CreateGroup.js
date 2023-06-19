@@ -17,12 +17,13 @@ const CreateGroup = () => {
     e.preventDefault();
     Dispatch(createGroup({ groupname: group }, token));
   };
-  const joinButtonHandler = (id, name) => {
+  const joinButtonHandler = (id, name, isAdmin) => {
     navigate("/chatmain");
     Dispatch(getCurrentGroupMessages({ groupid: id }, token));
     Dispatch(groupSliceAction.setCurrentGroupId(id));
     Dispatch(MessageSliceAction.setToggleMenu());
     Dispatch(groupSliceAction.setCurrentGroupName(name));
+    Dispatch(groupSliceAction.setIsAdmin(isAdmin));
   };
 
   return (
@@ -54,7 +55,11 @@ const CreateGroup = () => {
             {groupList.map((item) => (
               <p key={item.id}>
                 <span>{item.name}</span> {console.log(item)}
-                <button onClick={() => joinButtonHandler(item.id, item.name)}>
+                <button
+                  onClick={() =>
+                    joinButtonHandler(item.id, item.name, item.grouplist.admin)
+                  }
+                >
                   join
                 </button>
               </p>

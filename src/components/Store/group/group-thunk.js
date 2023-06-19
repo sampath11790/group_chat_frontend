@@ -1,4 +1,8 @@
 import GroupSlice, { groupSliceAction } from "./groupslice";
+
+import io from "socket.io-client";
+const socket = io("http://localhost:8000");
+
 //urls
 const getGroupsUrl = "http://localhost:3001/group";
 const createGroupUrl = "http://localhost:3001/group/create";
@@ -54,6 +58,13 @@ export const AddMember = (obj, token) => {
   return async (Dispatch) => {
     try {
       const data = await actionFun(addmemberUrl, obj, token, "POST");
+
+      //to notify that user
+      // socket.emit("added-group", obj);
+      const adminemail = localStorage.getItem("email");
+      // console.log({ ...obj, adminemail: adminemail });
+      socket.emit("added-group", { ...obj, adminemail: adminemail });
+      alert("user successfully added in this group");
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -65,7 +76,13 @@ export const removeMember = (obj, token) => {
   return async (Dispatch) => {
     try {
       const data = await actionFun(removeMemberUrl, obj, token, "DELETE");
-      console.log("data");
+      // console.log("data");
+
+      const adminemail = localStorage.getItem("email");
+      // console.log({ ...obj, adminemail: adminemail });
+      socket.emit("removed-group", { ...obj, adminemail: adminemail });
+      alert("user successfully  removed from this group");
+      // socket.emit("removed-group", obj);
     } catch (error) {
       console.log(error);
     }

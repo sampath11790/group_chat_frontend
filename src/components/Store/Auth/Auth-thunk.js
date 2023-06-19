@@ -47,8 +47,15 @@ export const Login = (obj) => {
       localStorage.setItem("token", user.token);
       localStorage.setItem("login", true);
       localStorage.setItem("name", user.name);
+      localStorage.setItem("email", user.email);
       // Dispatch(AuthSliceAction.login());
-      Dispatch(AuthSliceAction.setAuth({ login: "true", token: user.token }));
+      Dispatch(
+        AuthSliceAction.setAuth({
+          login: "true",
+          token: user.token,
+          email: user.email,
+        })
+      );
     } catch (error) {
       // console.log(error.message);
       alert("Please Enter valid data ");

@@ -19,6 +19,9 @@ const MessageSlice = createSlice({
     setToggleMenu(state, action) {
       state.toggleMenu = !state.toggleMenu;
     },
+    setMessageInitalstate(state, action) {
+      state.messages = [];
+    },
   },
 });
 

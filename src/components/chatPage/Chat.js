@@ -3,9 +3,9 @@ import cls from "./chat.module.css";
 import ChatNav from "./chatNav";
 
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
+// import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+// import Grid from "@mui/material/Grid";
 import Message from "./Message/message";
 import { useDispatch, useSelector } from "react-redux";
 import { SendMesssage } from "../Store/message/message-thunk";
@@ -30,6 +30,7 @@ const Chat = () => {
     Dispatch(
       SendMesssage({ message: message, groupid: currentGroupid }, token)
     );
+    setmessage("");
   };
   console.log("messages", messages);
   return (
@@ -51,6 +52,7 @@ const Chat = () => {
           type="text"
           name="text"
           onChange={(e) => setmessage(e.target.value)}
+          value={message}
         ></input>
         <div className={cls.Chat_botton_elm}>
           <label htmlFor="fileInput">

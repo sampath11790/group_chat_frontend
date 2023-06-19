@@ -6,7 +6,8 @@ import { GetGroupMembers, removeMember } from "../../Store/group/group-thunk";
 const GroupUserList = () => {
   const { GroupMember, currentGroupid } = useSelector((state) => state.group);
   const Dispatch = useDispatch();
-  const { login, token } = useSelector((state) => state.auth);
+  const { login, token, email } = useSelector((state) => state.auth);
+  const { isAdmin } = useSelector((state) => state.group);
 
   useEffect(() => {
     if (token != null) {
@@ -28,7 +29,9 @@ const GroupUserList = () => {
           />
           <span>{item.email}</span>
           <span>{item.grouplist.admin ? " Admin" : ""}</span>
-          <button onClick={() => memberRemove(item.email)}>remove</button>
+          {isAdmin && !item.grouplist.admin && (
+            <button onClick={() => memberRemove(item.email)}>remove</button>
+          )}
         </Stack>
       ))}
     </div>

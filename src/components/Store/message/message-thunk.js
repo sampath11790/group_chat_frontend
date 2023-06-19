@@ -1,4 +1,6 @@
 import { MessageSliceAction } from "./messageslice";
+import io from "socket.io-client";
+const socket = io("http://localhost:8000");
 
 //urls
 const MessageUrl = "http://localhost:3001/user/message";
@@ -27,6 +29,7 @@ export const SendMesssage = (obj, token) => {
   return async (Dispatch) => {
     try {
       const data = await postactionFun(MessageUrl, obj, token, "POST");
+      socket.emit("send-message", obj.groupid);
       // Dispatch(MessageSliceAction.setMessages(data));
     } catch (error) {
       console.log(error);
