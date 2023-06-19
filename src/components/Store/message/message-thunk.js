@@ -1,7 +1,8 @@
 import { MessageSliceAction } from "./messageslice";
 
 //urls
-const MessageUrl = "localhost:3001/user/message";
+const MessageUrl = "http://localhost:3001/user/message";
+const getmessageurl = "http://localhost:3001/user/messagelist";
 
 //support function
 const postactionFun = async (url, obj, token, method) => {
@@ -26,6 +27,7 @@ export const SendMesssage = (obj, token) => {
   return async (Dispatch) => {
     try {
       const data = await postactionFun(MessageUrl, obj, token, "POST");
+      // Dispatch(MessageSliceAction.setMessages(data));
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +37,9 @@ export const SendMesssage = (obj, token) => {
 export const getCurrentGroupMessages = (obj, token) => {
   return async (Dispatch) => {
     try {
-      const data = await postactionFun(MessageUrl, obj, token, "POST");
+      const data = await postactionFun(getmessageurl, obj, token, "POST");
+      // console.log(data.data);
+      Dispatch(MessageSliceAction.setMessages(data.data));
       //   Dispatch(MessageSliceAction.setMessages(data))
     } catch (error) {
       console.log(error);

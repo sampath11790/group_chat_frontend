@@ -2,14 +2,29 @@ import React, { useState } from "react";
 import cls from "./CreateGroup.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createGroup } from "../../Store/group/group-thunk";
+import { useNavigate } from "react-router-dom";
+import { getCurrentGroupMessages } from "../../Store/message/message-thunk";
+import { MessageSliceAction } from "../../Store/message/messageslice";
+import { groupSliceAction } from "../../Store/group/groupslice";
 const CreateGroup = () => {
   const [group, setgroup] = useState("");
   const { token } = useSelector((state) => state.auth);
+
+  const { groupList } = useSelector((state) => state.group);
   const Dispatch = useDispatch();
+  const navigate = useNavigate();
   const fromHandler = (e) => {
     e.preventDefault();
     Dispatch(createGroup({ groupname: group }, token));
   };
+  const joinButtonHandler = (id, name) => {
+    navigate("/chatmain");
+    Dispatch(getCurrentGroupMessages({ groupid: id }, token));
+    Dispatch(groupSliceAction.setCurrentGroupId(id));
+    Dispatch(MessageSliceAction.setToggleMenu());
+    Dispatch(groupSliceAction.setCurrentGroupName(name));
+  };
+
   return (
     <div className={cls.main_page_container}>
       <h2>
@@ -36,15 +51,14 @@ const CreateGroup = () => {
             <button> Create group</button>
           </form>
           <div>
-            <p>
-              <span>group1</span> <button>join</button>
-            </p>
-            <p>
-              <span>group2</span> <button>join</button>
-            </p>
-            <p>
-              <span>group3</span> <button>join</button>
-            </p>
+            {groupList.map((item) => (
+              <p key={item.id}>
+                <span>{item.name}</span> {console.log(item)}
+                <button onClick={() => joinButtonHandler(item.id, item.name)}>
+                  join
+                </button>
+              </p>
+            ))}
           </div>
         </div>
       </div>

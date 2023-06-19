@@ -26,21 +26,32 @@ const Chat = () => {
   const Dispatch = useDispatch();
   const fromHandler = (e) => {
     e.preventDefault();
+    console.log("message", message);
     Dispatch(
       SendMesssage({ message: message, groupid: currentGroupid }, token)
     );
   };
-
+  console.log("messages", messages);
   return (
     <div className={cls.Chat_page_cont}>
       <ChatNav></ChatNav>
       <div className={cls.Chat_msg}>
         {messages.map((item, index) => (
-          <Message key={item.id} id={item.id} message={item.message}></Message>
+          <Message
+            key={item.id}
+            id={item.id}
+            message={item.message}
+            createdAt={item.createdAt}
+            // user={item.user.name ? item.user.name : ""}
+          ></Message>
         ))}
       </div>
       <form className={cls.Chat_buttom_box} onSubmit={fromHandler}>
-        <input type="text" name="text" onChange={(e) => e.target.value}></input>
+        <input
+          type="text"
+          name="text"
+          onChange={(e) => setmessage(e.target.value)}
+        ></input>
         <div className={cls.Chat_botton_elm}>
           <label htmlFor="fileInput">
             <span>📎</span>

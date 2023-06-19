@@ -16,6 +16,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const login = localStorage.getItem("login");
+    // console.log(token, login);
     Dispatch(AuthSliceAction.setAuth({ login: login, token: token }));
   }, []);
   useEffect(() => {

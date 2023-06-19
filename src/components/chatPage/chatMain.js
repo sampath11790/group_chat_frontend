@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -6,9 +6,21 @@ import Grid from "@mui/material/Grid";
 import Chatsidebar from "./chatSidebar";
 import Chat from "./Chat";
 import MobileMenu from "./mobileView/mobileView";
+import { useDispatch, useSelector } from "react-redux";
+import { GetAllMembers, GetGroupMembers } from "../Store/group/group-thunk";
+import { getCurrentGroupMessages } from "../Store/message/message-thunk";
 // import MobileMenu from "./mobileView/mobileView";
 
 const ChatMain = () => {
+  const Dispatch = useDispatch();
+  const { login, token } = useSelector((state) => state.auth);
+  const { currentGroupid } = useSelector((state) => state.group);
+  useEffect(() => {
+    if (token != null && currentGroupid != null) {
+      Dispatch(getCurrentGroupMessages({ groupid: currentGroupid }, token));
+      // Dispatch(GetGroupMembers(token, currentGroupid));
+    }
+  }, [token, currentGroupid]);
   return (
     <>
       <Box

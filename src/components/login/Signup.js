@@ -27,8 +27,8 @@ const SignupPage = () => {
     }
     if (signup) {
       Disptach(Signup(data));
-      setData(initialData);
-      // console.log("signup", obj);
+      // setData(initialData);
+      // console.log("signup", data);
       return;
     }
     alert("enter valid data");

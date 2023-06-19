@@ -9,10 +9,11 @@ const Search = () => {
   const Dispatch = useDispatch();
   const fromHandler = (e) => {
     e.preventDefault();
+    // console.log(email);
     Dispatch(AddMember({ email: email, groupid: currentGroupid }, token));
   };
   return (
-    <form className={cls.Search_bar_containter} onChange={fromHandler}>
+    <form className={cls.Search_bar_containter} onSubmit={fromHandler}>
       <input
         type="text"
         placeholder="enter user mailid"

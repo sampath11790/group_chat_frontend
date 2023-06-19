@@ -1,8 +1,8 @@
 import { AuthSliceAction } from "./Authslice";
 
 //url
-const signupUrl = `localhost:3000/user/signup`;
-const loginUrl = `localhost:3000/user/login`;
+const signupUrl = `http://localhost:3001/user/signup`;
+const loginUrl = `http://localhost:3001/user/login`;
 
 //support function
 
@@ -15,6 +15,7 @@ const auth = async (url, obj) => {
     },
   });
   const data = await response.json();
+  console.log(data);
   if (data.error) {
     throw new Error();
   }
@@ -26,12 +27,13 @@ const auth = async (url, obj) => {
 export const Signup = (obj) => {
   return async (Disptach) => {
     try {
-      const data = await auth(signupUrl, obj, "signup");
+      // console.log(obj);
+      const data = await auth(signupUrl, obj);
       alert(" successfully registered your account ");
 
       Disptach(AuthSliceAction.login());
     } catch (error) {
-      alert("Please Enter valid data ");
+      alert("Please Enter valid data to signup");
       //   console.log(error.message);
     }
   };
@@ -42,11 +44,11 @@ export const Login = (obj) => {
     try {
       const user = await auth(loginUrl, obj, "login");
       alert("login success");
-      localStorage.setItem("token", user.Token);
+      localStorage.setItem("token", user.token);
       localStorage.setItem("login", true);
       localStorage.setItem("name", user.name);
       // Dispatch(AuthSliceAction.login());
-      Dispatch(AuthSliceAction.setAuth({ login: "true", token: user.Token }));
+      Dispatch(AuthSliceAction.setAuth({ login: "true", token: user.token }));
     } catch (error) {
       // console.log(error.message);
       alert("Please Enter valid data ");
