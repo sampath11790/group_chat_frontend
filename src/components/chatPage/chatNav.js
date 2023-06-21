@@ -4,7 +4,7 @@ import Logout from "./Logout/Logout";
 import { useSelector } from "react-redux";
 const ChatNav = () => {
   const { currentGroupName } = useSelector((state) => state.group);
-  console.log("currentGroupName", currentGroupName);
+  // console.log("currentGroupName", currentGroupName);
   return (
     <div className={cls.chatNav}>
       <p>GroupName:{currentGroupName}</p>

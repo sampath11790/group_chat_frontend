@@ -1,25 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialstate = {
-  groupList: [
-    // { id: 1, groupname: "group1" },
-    // { id: 2, groupname: "group2" },
-    // { id: 3, groupname: "group2" },
-  ],
-  GroupMember: [
-    // { id: 1, email: "sample@gmail.com" },
-    // { id: 2, email: "sample@gmail.com" },
-    // { id: 3, email: "sample@gmail.com" },
-    // { id: 4, email: "sample@gmail.com" },
-  ],
+  groupList: [],
+  GroupMember: [],
   currentGroupid: null,
   currentGroupName: "",
-  UserList: [
-    // { id: 1, email: "sample@gmail.com" },
-    // { id: 2, email: "sample@gmail.com" },
-    // { id: 3, email: "sample@gmail.com" },
-    // { id: 4, email: "sample@gmail.com" },
-  ],
+  UserList: [],
   isAdmin: false,
+  call: 0,
 };
 
 const GroupSlice = createSlice({
@@ -37,6 +24,7 @@ const GroupSlice = createSlice({
     },
     setCurrentGroupId(state, action) {
       state.currentGroupid = action.payload;
+      console.log(action.payload);
     },
     setCurrentGroupName(state, action) {
       state.currentGroupName = action.payload;
@@ -47,6 +35,9 @@ const GroupSlice = createSlice({
     },
     setIsAdmin(state, action) {
       state.isAdmin = action.payload;
+    },
+    setCall(state, action) {
+      state.call++;
     },
   },
 });

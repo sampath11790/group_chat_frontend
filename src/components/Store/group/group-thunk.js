@@ -1,7 +1,8 @@
+import socket from "../../../socket";
 import GroupSlice, { groupSliceAction } from "./groupslice";
 
-import io from "socket.io-client";
-const socket = io("http://localhost:8000");
+// import io from "socket.io-client";
+// const socket = io("http://localhost:8001");
 
 //urls
 const getGroupsUrl = "http://localhost:3001/group";
@@ -48,6 +49,7 @@ export const createGroup = (obj, token) => {
   return async (Dispatch) => {
     try {
       const data = await actionFun(createGroupUrl, obj, token, "POST");
+      Dispatch(groupSliceAction.setCall());
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +66,7 @@ export const AddMember = (obj, token) => {
       const adminemail = localStorage.getItem("email");
       // console.log({ ...obj, adminemail: adminemail });
       socket.emit("added-group", { ...obj, adminemail: adminemail });
-      alert("user successfully added in this group");
+      // alert("user successfully added in this group");
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -81,7 +83,7 @@ export const removeMember = (obj, token) => {
       const adminemail = localStorage.getItem("email");
       // console.log({ ...obj, adminemail: adminemail });
       socket.emit("removed-group", { ...obj, adminemail: adminemail });
-      alert("user successfully  removed from this group");
+      // alert("user successfully  removed from this group");
       // socket.emit("removed-group", obj);
     } catch (error) {
       console.log(error);
@@ -123,8 +125,27 @@ export const GetGroupMembers = (token, id) => {
         token,
         "POST"
       );
-      // console.log(" group messmber", data);
+      console.log(" group messmber", data);
       Dispatch(groupSliceAction.setGroupMember(data.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const DeleteGroup = (token, id) => {
+  return async (Dispatch) => {
+    try {
+      console.log(" DeleteGroup funcction call");
+      const data = await actionFun(
+        getGroupsUrl,
+        { groupid: id },
+        token,
+        "DELETE"
+      );
+      console.log(" group deleted");
+      socket.emit("delete-group", { groupid: id });
+      // Dispatch(groupSliceAction.setGroupMember(data.data));
     } catch (error) {
       console.log(error);
     }

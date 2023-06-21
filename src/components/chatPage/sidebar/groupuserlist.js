@@ -10,11 +10,10 @@ const GroupUserList = () => {
   const { isAdmin } = useSelector((state) => state.group);
 
   useEffect(() => {
-    if (token != null) {
-      if (token != null && currentGroupid != null)
-        Dispatch(GetGroupMembers(token, currentGroupid));
+    if (token != null && currentGroupid != null) {
+      Dispatch(GetGroupMembers(token, currentGroupid));
     }
-  }, [token, currentGroupid]);
+  }, [currentGroupid]);
   const memberRemove = (email) => {
     Dispatch(removeMember({ email: email, groupid: currentGroupid }, token));
   };

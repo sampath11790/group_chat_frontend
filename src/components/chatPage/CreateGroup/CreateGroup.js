@@ -16,6 +16,7 @@ const CreateGroup = () => {
   const fromHandler = (e) => {
     e.preventDefault();
     Dispatch(createGroup({ groupname: group }, token));
+    setgroup("");
   };
   const joinButtonHandler = (id, name, isAdmin) => {
     navigate("/chatmain");
@@ -54,7 +55,7 @@ const CreateGroup = () => {
           <div>
             {groupList.map((item) => (
               <p key={item.id}>
-                <span>{item.name}</span> {console.log(item)}
+                <span>{item.name}</span>
                 <button
                   onClick={() =>
                     joinButtonHandler(item.id, item.name, item.grouplist.admin)

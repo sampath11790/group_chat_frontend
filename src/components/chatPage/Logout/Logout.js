@@ -10,7 +10,9 @@ const Logout = (props) => {
   const Dispatch = useDispatch();
   const logoutHandler = () => {
     localStorage.clear();
-    Dispatch(AuthSliceAction.setAuth({ login: null, token: null }));
+    Dispatch(
+      AuthSliceAction.setlogOut({ login: null, token: null, logout: true })
+    );
 
     navigate("/login");
   };

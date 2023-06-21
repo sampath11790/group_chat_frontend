@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import cls from "./sidebar.module.css";
 import { Avatar, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { GetAllMembers, GetGroupMembers } from "../../Store/group/group-thunk";
+import { GetAllMembers } from "../../Store/group/group-thunk";
 const UserList = () => {
-  const { UserList, currentGroupid } = useSelector((state) => state.group);
+  const { UserList } = useSelector((state) => state.group);
   const Dispatch = useDispatch();
-  const { login, token } = useSelector((state) => state.auth);
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (token != null) {

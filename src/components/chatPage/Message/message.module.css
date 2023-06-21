@@ -2,8 +2,10 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  flex-direction: column;
   margin-bottom: 10px;
   width: 100%;
+  /* margin-top: 6px; */
 }
 .rightChat {
   display: flex;
@@ -12,6 +14,8 @@
   flex-direction: column;
   margin-bottom: 10px;
   width: 100%;
+  /* margin-left: 20px; */
+  /* margin-top: 6px; */
 }
 .time {
   font-size: 12px;
@@ -20,13 +24,26 @@
 }
 
 .message {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   background-color: #c9ddf5;
   border-radius: 1px 10px 15px;
   padding: 12px;
-  position: relative;
+  /* position: relative; */
+}
+
+.messageright {
+  /* margin-top: 10px; */
+  background-color: #c9ddf5;
+  border-radius: 10px 1px 10px 10px;
+  padding: 12px;
+  /* margin-right: 20px; */
+  /* position: relative; */
 }
 
 .messageContent {
-  margin-right: 10px;
+  /* margin-right: 10px; */
+}
+
+.messageContentright {
+  /* margin-left: 10px; */
 }

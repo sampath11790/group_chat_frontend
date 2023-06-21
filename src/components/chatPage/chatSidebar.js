@@ -7,11 +7,11 @@ import { useSelector } from "react-redux";
 // import Groups from "./sidebar/toggleMenu";
 
 const Chatsidebar = () => {
-  const { isAdmin } = useSelector((state) => state.group);
+  const { isAdmin, currentGroupid } = useSelector((state) => state.group);
   return (
     <div className={cls.sidebar_main_container}>
       <SidebarNav></SidebarNav>
-      {isAdmin && <Search></Search>}
+      {isAdmin && currentGroupid && <Search></Search>}
       <ToggleMenu></ToggleMenu>
     </div>
   );
