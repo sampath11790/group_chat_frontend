@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import cls from "./sidebar.module.css";
-import { Avatar, Stack } from "@mui/material";
+import { Avatar, Button, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { GetGroupMembers, removeMember } from "../../Store/group/group-thunk";
+import { DeleteForever } from "@mui/icons-material";
+import { AccountCircle } from "@mui/icons-material";
 const GroupUserList = () => {
   const { GroupMember, currentGroupid } = useSelector((state) => state.group);
   const Dispatch = useDispatch();
@@ -21,15 +23,27 @@ const GroupUserList = () => {
     <div className={cls.userlist}>
       {GroupMember.map((item, index) => (
         <Stack direction="row" alignItems="center" gap={2} m={2} key={item.id}>
-          <Avatar
-            sx={{ width: 32, height: 32, objectFit: "cover" }}
-            alt=""
-            src="https://th.bing.com/th/id/OIP.tfOvEHoC27BUODsx5P7dXwHaLH?pid=ImgDet&rs=1"
-          />
+          <AccountCircle></AccountCircle>
+
           <span>{item.email}</span>
-          <span>{item.grouplist.admin ? " Admin" : ""}</span>
+          {item.grouplist.admin && (
+            <Button
+              variant="outlined"
+              color="success"
+              sx={{ borderRadius: 20, margin: 1 }}
+            >
+              {item.grouplist.admin ? " Admin" : ""}
+            </Button>
+          )}
           {isAdmin && !item.grouplist.admin && (
-            <button onClick={() => memberRemove(item.email)}>remove</button>
+            <Button
+              variant="outlined"
+              color="error"
+              sx={{ borderRadius: 20, margin: 1 }}
+              onClick={() => memberRemove(item.email)}
+            >
+              <DeleteForever></DeleteForever>
+            </Button>
           )}
         </Stack>
       ))}

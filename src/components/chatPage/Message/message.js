@@ -1,9 +1,13 @@
 import React from "react";
 import cls from "./message.module.css";
 import { useSelector } from "react-redux";
+
+import { AccountCircle, PersonPinCircleOutlined } from "@mui/icons-material";
 const Message = ({ id, message, createdAt, user }) => {
   // const { email } = useSelector((state) => state.auth);
   const name = localStorage.getItem("name");
+  let isURL = message.startsWith("https://") && message.endsWith(".jpg");
+
   const time = (obj) => {
     const currentDate = new Date(obj);
     const dateString = currentDate.toDateString();
@@ -14,10 +18,15 @@ const Message = ({ id, message, createdAt, user }) => {
     return timeString;
   };
   return (
-    <li key={id} className={name == user ? cls.chatMessage : cls.rightChat}>
+    <li key={id} className={name != user ? cls.chatMessage : cls.rightChat}>
       <div>
-        <span>{user}</span>
-        <span className={cls.time}>{time(createdAt)}</span>
+        <span style={{ display: "flex" }}>
+          {" "}
+          {/* <AccountCircle></AccountCircle> */}
+          <PersonPinCircleOutlined></PersonPinCircleOutlined>
+          <span>{user}</span>
+          <span className={cls.time}>{time(createdAt)}</span>
+        </span>
       </div>
       <span className={name == user ? cls.message : cls.messageright}>
         <span
@@ -25,7 +34,12 @@ const Message = ({ id, message, createdAt, user }) => {
             name == user ? cls.messageContent : cls.messageContentright
           }
         >
-          {message}
+          {isURL ? <img src={message} width={100} height={100}></img> : message}
+          {isURL && (
+            <a href={message} target="_blank" rel="noopener noreferrer">
+              Click to download
+            </a>
+          )}
         </span>
       </span>
     </li>

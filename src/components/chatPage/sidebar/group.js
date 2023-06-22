@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { getCurrentGroupMessages } from "../../Store/message/message-thunk";
 import { groupSliceAction } from "../../Store/group/groupslice";
 import { MessageSliceAction } from "../../Store/message/messageslice";
+import { Button, IconButton } from "@mui/material";
+import { AppShortcut, Create, Delete } from "@mui/icons-material";
 const Group = () => {
   const { token } = useSelector((state) => state.auth);
   const { groupList, call } = useSelector((state) => state.group);
@@ -31,25 +33,38 @@ const Group = () => {
         <p key={item.id}>
           <span>{item.name}</span>
 
-          <button
+          <Button
+            variant="contained"
+            sx={{ borderRadius: 20, margin: 1 }}
             onClick={() =>
               joinButtonHandler(item.id, item.name, item.grouplist.admin)
             }
           >
             join
-          </button>
+            <AppShortcut></AppShortcut>
+          </Button>
           {item.grouplist.admin && (
-            <button
+            <Button
+              variant="outlined"
+              color="error"
+              sx={{ borderRadius: 20, margin: 1 }}
               onClick={() =>
                 GroupdeleteHandler(item.id, item.name, item.grouplist.admin)
               }
             >
-              DELETE
-            </button>
+              <Delete></Delete>
+            </Button>
           )}
         </p>
       ))}
-      <button onClick={() => navigate("/creategroup")}>Create group</button>
+      <Button
+        variant="contained"
+        sx={{ bgcolor: "yellow", color: "black", margin: 5 }}
+        onClick={() => navigate("/creategroup")}
+      >
+        Create group
+        <Create></Create>
+      </Button>
     </div>
   );
 };
